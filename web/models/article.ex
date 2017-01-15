@@ -10,7 +10,7 @@ defmodule NhkEasyToInstapaper.Article do
     |> Floki.find("#newsarticle")
     |> remove_rt_tags
     |> Floki.raw_html
-    |> HtmlSanitizeEx.strip_tags
+    |> HtmlSanitizeEx.basic_html
   end
 
   defp remove_rt_tags(html) do
