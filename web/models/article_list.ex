@@ -4,7 +4,7 @@ defmodule NhkEasyToInstapaper.ArticleList do
   @list_uri "http://www3.nhk.or.jp/news/easy/news-list.json"
 
   def fetch do
-    flattened_articles() |> Enum.map(fn(article) ->
+    sorted_articles() |> Enum.map(fn(article) ->
       %Article{
         title: Map.get(article, "title"),
         id: Map.get(article, "news_id"),
@@ -20,7 +20,7 @@ defmodule NhkEasyToInstapaper.ArticleList do
     |> List.first
   end
 
-  defp flattened_articles do
+  defp sorted_articles do
     articles_by_date() |> Map.keys |> Enum.map(fn(key) ->
       Map.get(articles_by_date(), key)
       |> Enum.sort_by(&(Map.get(&1, "news_priority_number")))
