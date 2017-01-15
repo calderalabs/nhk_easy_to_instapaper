@@ -3,7 +3,11 @@ defmodule NhkEasyToInstapaper.ArticleList do
 
   @list_uri "http://www3.nhk.or.jp/news/easy/news-list.json"
 
-  def fetch do
+  def find(id) do
+    all() |> Enum.find(&(&1.id == id))
+  end
+
+  def all do
     sorted_articles() |> Enum.map(fn(article) ->
       %Article{
         title: Map.get(article, "title"),

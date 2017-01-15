@@ -1,0 +1,3 @@
+<h1><%= @article.title %></h1>
+<h2><%= @article.date %></h2>
+<p><%= NhkEasyToInstapaper.Article.body(@article) %></p>
