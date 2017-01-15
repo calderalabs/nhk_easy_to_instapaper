@@ -14,7 +14,6 @@ use Mix.Config
 config :nhk_easy_to_instapaper, NhkEasyToInstapaper.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "nhk-easy-to-instapaper.herokuapp.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 # Do not print debug messages in production
