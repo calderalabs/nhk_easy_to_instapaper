@@ -17,7 +17,7 @@ defmodule NhkEasyToInstapaper.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {NhkEasyToInstapaper, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :httpoison]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :httpoison, :quantum]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,6 +38,7 @@ defmodule NhkEasyToInstapaper.Mixfile do
      {:floki, "~> 0.11.0"},
      {:html_sanitize_ex, "~> 1.0.0"},
      {:mochiweb, "~> 2.15", override: true},
-     {:exredis, "~> 0.2.4"}]
+     {:exredis, "~> 0.2.4"},
+     {:quantum, ">= 1.8.1"}]
   end
 end
