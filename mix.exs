@@ -37,6 +37,7 @@ defmodule NhkEasyToInstapaper.Mixfile do
      {:httpoison, "~> 0.10.0"},
      {:floki, "~> 0.11.0"},
      {:html_sanitize_ex, "~> 1.0.0"},
-     {:mochiweb, "~> 2.15", override: true}]
+     {:mochiweb, "~> 2.15", override: true},
+     {:exredis, "~> 0.2.4"}]
   end
 end

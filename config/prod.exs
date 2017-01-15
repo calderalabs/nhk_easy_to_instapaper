@@ -20,6 +20,11 @@ config :nhk_easy_to_instapaper, NhkEasyToInstapaper.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :exredis,
+  url: System.get_env("REDIS_URL"),
+  reconnect: :no_reconnect,
+  max_queue: :infinity
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
