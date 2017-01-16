@@ -19,7 +19,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :quantum, cron: [
-  "@daily": &NhkEasyToInstapaper.Pusher.push_to_instapaper/0,
+  "0 7 * * *": &NhkEasyToInstapaper.Pusher.push_to_instapaper/0,
 ],
 timezone: "Europe/London"
 
