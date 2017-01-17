@@ -8,35 +8,23 @@ defmodule NhkEasyToInstapaper.Article do
   def body(article) do
     HTTPoison.get!(url(article)).body
     |> Floki.find("#newsarticle")
-    |> remove_rt_tags_and_content
-    |> remove_a_tags
     |> Floki.raw_html
-    |> HtmlSanitizeEx.basic_html
+    |> HtmlSanitizeEx.Scrubber.scrub(NhkEasyToInstapaper.Scrubber.OnlyParagraphs)
   end
+end
 
-  defp remove_rt_tags_and_content(html) do
-    step = fn(tag, attrs, children) ->
-      {tag, attrs, children |> Enum.map(&(remove_rt_tags_and_content(&1))) |> Enum.reject(&(&1 == nil))}
-    end
+defmodule NhkEasyToInstapaper.Scrubber.OnlyParagraphs do
+  @moduledoc """
+  Strips all tags except paragraphs
+  """
 
-    case html do
-      [{tag, attrs, children}] -> [step.(tag, attrs, children)]
-      {"rt", _, _} -> nil
-      {tag, attrs, children} -> step.(tag, attrs, children)
-      x -> x
-    end
-  end
+  require HtmlSanitizeEx.Scrubber.Meta
+  alias HtmlSanitizeEx.Scrubber.Meta
 
-  defp remove_a_tags(html) do
-    step = fn(tag, attrs, children) ->
-      {tag, attrs, children |> Enum.map(&(remove_a_tags(&1)))}
-    end
-
-    case html do
-      [{tag, attrs, children}] -> [step.(tag, attrs, children)]
-      {"a", _, [children]} -> children
-      {tag, attrs, children} -> step.(tag, attrs, children)
-      x -> x
-    end
-  end
+  # Removes any CDATA tags before the traverser/scrubber runs.
+  Meta.remove_cdata_sections_before_scrub
+  def scrub({"rt", _, _}), do: ""
+  Meta.strip_comments
+  Meta.allow_tag_with_these_attributes "p", []
+  Meta.strip_everything_not_covered
 end
