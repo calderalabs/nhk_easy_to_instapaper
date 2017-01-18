@@ -1,11 +1,18 @@
 {
   "name": "NHK EASY to Instapaper",
-  "description": "Add one NHK easy article to Instapaper every day",
+  "description": "Add one NHK EASY article to Instapaper every day",
   "repository": "https://github.com/calderalabs/nhk_easy_to_instapaper",
   "addons": ["heroku-redis:hobby-dev"],
   "env": {
     "INSTAPAPER_USERNAME": "",
     "INSTAPAPER_PASSWORD": "",
-    "SECRET_KEY_BASE": ""
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    }
   },
+  "buildpacks": [
+    {
+      "url": "https://github.com/HashNuke/heroku-buildpack-elixir"
+    }
+  ]
 }
