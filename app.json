@@ -8,7 +8,8 @@
     "INSTAPAPER_PASSWORD": "",
     "SECRET_KEY_BASE": {
       "generator": "secret"
-    }
+    },
+    "TIMEZONE": "Europe/London"
   },
   "buildpacks": [
     {

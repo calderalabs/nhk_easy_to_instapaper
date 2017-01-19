@@ -21,7 +21,7 @@ config :logger, :console,
 config :quantum, cron: [
   "0 8 * * *": &NhkEasyToInstapaper.Pusher.push_to_instapaper/0,
 ],
-timezone: "Europe/London"
+timezone: System.get_env("TIMEZONE")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
