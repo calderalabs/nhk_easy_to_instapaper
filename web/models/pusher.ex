@@ -14,7 +14,7 @@ defmodule NhkEasyToInstapaper.Pusher do
     if Enum.member?(article_ids(redis_client), article.id) do
       push_article_at(article_list, index - 1, redis_client)
     else
-      HTTPoison.get!("https://www.instapaper.com/api/add?username=#{System.get_env("INSTAPAPER_USERNAME")}&password=#{System.get_env("INSTAPAPER_PASSWORD")}&url=http://nhk-easy-to-instapaper.herokuapp.com/#{article.id}")
+      HTTPoison.get!("https://www.instapaper.com/api/add?username=#{System.get_env("INSTAPAPER_USERNAME")}&password=#{System.get_env("INSTAPAPER_PASSWORD")}&url=#{System.get_env("HOST")}/#{article.id}")
       Exredis.query(redis_client, ["LPUSH", "already_imported_articles", article.id])
     end
   end

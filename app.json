@@ -9,7 +9,11 @@
     "SECRET_KEY_BASE": {
       "generator": "secret"
     },
-    "TIMEZONE": "Europe/London"
+    "HOST": "http://yourappname.herokuapp.com",
+    "TIMEZONE": {
+      "value": "Europe/London",
+      "required": false
+    }
   },
   "buildpacks": [
     {
