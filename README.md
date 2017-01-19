@@ -5,10 +5,12 @@
 ## Run the app in development
 
 Install dependencies with `mix deps.get`
-Create a file in the root directory called `.env` that contains the following environment variables:
+Create a file in the root directory called `.env` like this:
 
-  * INSTAPAPER_USERNAME
-  * INSTAPAPER_PASSWORD
+```
+INSTAPAPER_USERNAME=yourusername
+INSTAPAPER_PASSWORD=yourpassword
+```
 
 Then run
 
