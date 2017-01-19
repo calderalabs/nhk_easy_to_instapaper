@@ -6,8 +6,7 @@ Add one NHK EASY article to Instapaper every day.
 
 ## Run the app in development
 
-Install dependencies with `mix deps.get`
-Install and run Redis
+Install dependencies with `mix deps.get` then install and run Redis:
 
 ```
 brew install redis
@@ -22,7 +21,7 @@ INSTAPAPER_PASSWORD=yourpassword
 HOST=http://localhost:4000
 ```
 
-Then run
+Then run:
 
 ```
 gem install foreman
@@ -31,7 +30,7 @@ foreman start -f Procfile.dev
 
 You will then be able to see simplified NHK EASY articles at `http://localhost:4000/{articleId}` where `articleId` is for example `k10010844631000`. If you visit any NHK EASY article page you will be able to see this id in the url.
 
-If you wish to test that articles can be pushed to Instapaper then run
+If you wish to test that articles can be pushed to Instapaper then run:
 
 ```
 iex -S mix
