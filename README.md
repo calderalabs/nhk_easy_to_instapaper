@@ -2,6 +2,8 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+Add one NHK EASY article to Instapaper every day.
+
 ## Run the app in development
 
 Install dependencies with `mix deps.get`
