@@ -7,14 +7,12 @@ defmodule NhkEasyToInstapaper.ArticleList do
     all() |> Enum.find(&(&1.id == id))
   end
 
-  def all do
-    sorted_articles() |> Enum.map(fn(article) ->
-      %Article{
-        title: Map.get(article, "title"),
-        id: Map.get(article, "news_id"),
-        date: Map.get(article, "date")
-      }
-    end)
+  def most_recent_articles do
+    all()
+    |> Enum.sort_by(&(&1.date))
+    |> Enum.reverse
+    |> Enum.slice(0..4)
+    |> Enum.shuffle
   end
 
   defp articles_by_date do
@@ -24,12 +22,18 @@ defmodule NhkEasyToInstapaper.ArticleList do
     |> List.first
   end
 
-  defp sorted_articles do
+  defp all do
     articles_by_date() |> Map.keys |> Enum.map(fn(key) ->
       Map.get(articles_by_date(), key)
-      |> Enum.sort_by(&(Map.get(&1, "news_priority_number")))
-      |> Enum.reverse
       |> Enum.map(&(Map.put(&1, "date", key)))
-    end) |> List.flatten
+    end)
+    |> List.flatten
+    |> Enum.map(fn(article) ->
+      %Article{
+        title: Map.get(article, "title"),
+        id: Map.get(article, "news_id"),
+        date: Map.get(article, "date")
+      }
+    end)
   end
 end

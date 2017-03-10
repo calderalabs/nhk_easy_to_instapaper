@@ -3,7 +3,7 @@ defmodule NhkEasyToInstapaper.Pusher do
 
   def push_to_instapaper do
     {:ok, redis_client} = Exredis.start_link
-    article_list = ArticleList.all
+    article_list = ArticleList.most_recent_articles()
     push_article_at(article_list, -1, redis_client)
     Exredis.stop(redis_client)
   end
